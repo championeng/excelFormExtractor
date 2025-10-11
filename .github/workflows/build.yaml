@@ -118,6 +118,9 @@ jobs:
       - name: install goimports
         run: go install golang.org/x/tools/cmd/goimports@v0.16.0
 
+      - name: Set GOPATH
+        run: echo "GOPATH=$(go env GOPATH)" >> $GITHUB_ENV
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v2.22.0
         env:
@@ -125,10 +128,10 @@ jobs:
           CIBW_BUILD: "cp311-macosx_arm64 cp312-macosx_arm64 cp313-macosx_arm64"
           CIBW_SKIP: "cp36-* cp37-* cp38-* cp39-*"
           CIBW_ARCHS: "arm64"
-          CIBW_ENVIRONMENT: "PATH=$PATH:$(go env GOPATH)/bin GOARCH=arm64 RELEASE_VERSION=${RELEASE_VERSION}"
+          CIBW_ENVIRONMENT: "PATH=$PATH:$GOPATH/bin:/usr/local/go/bin GOARCH=arm64 RELEASE_VERSION=$RELEASE_VERSION"
           CIBW_BEFORE_BUILD: |
             pip install pybindgen
-          # CIBW_BUILD_VERBOSITY: 3 # Add verbose output
+          CIBW_BUILD_VERBOSITY: 3 # Add verbose output
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v4
