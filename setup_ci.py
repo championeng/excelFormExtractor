@@ -55,6 +55,10 @@ class CustomBuildExt(build_ext):
         )
         # destination = PACKAGE_NAME
 
+        # Preserve the existing environment and update with Go-specific variables
+        build_env = os.environ.copy()
+        build_env.update({"PATH": bin_path, **go_env, "CGO_LDFLAGS_ALLOW": ".*"})
+
         subprocess.check_call(
             [
                 "gopy",
@@ -68,7 +72,7 @@ class CustomBuildExt(build_ext):
                 PYTHON_BINARY,
                 *ext.sources,
             ],
-            env={"PATH": bin_path, **go_env, "CGO_LDFLAGS_ALLOW": ".*"},
+            env=build_env,
         )
 
         # dirty hack to avoid "from pkg import pkg", remove if needed
