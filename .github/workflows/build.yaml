@@ -128,7 +128,7 @@ jobs:
           CIBW_BUILD: "cp311-macosx_arm64 cp312-macosx_arm64 cp313-macosx_arm64"
           CIBW_SKIP: "cp36-* cp37-* cp38-* cp39-*"
           CIBW_ARCHS: "arm64"
-          CIBW_ENVIRONMENT: "PATH=$PATH:$GOPATH/bin:/usr/local/go/bin GOARCH=arm64 RELEASE_VERSION=$RELEASE_VERSION"
+          CIBW_ENVIRONMENT: "PATH=$PATH:$GOPATH/bin:/usr/local/go/bin RELEASE_VERSION=$RELEASE_VERSION"
           CIBW_BEFORE_BUILD: |
             pip install pybindgen
           CIBW_BUILD_VERBOSITY: 3 # Add verbose output
