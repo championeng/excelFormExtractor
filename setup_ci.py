@@ -23,6 +23,7 @@ def normalize(name):  # https://peps.python.org/pep-0503/#normalized-names
 
 PACKAGE_PATH = "py_excel_form_extractor"
 PACKAGE_NAME = PACKAGE_PATH.split("/")[-1]
+PACKAGE_DISTRIBUTION_NAME = "champion-excel-form-extractor"
 
 if sys.platform == "darwin":
     # PYTHON_BINARY_PATH is setting explicitly for 310 and 311, see build_wheel.yml
@@ -84,7 +85,7 @@ with open("LICENSE") as f:
     license = f.read()
 
 setuptools.setup(
-    name=normalize(PACKAGE_NAME),
+    name=normalize(PACKAGE_DISTRIBUTION_NAME),
     version=version,
     url="https://github.com/adhadse/excelFormExtractor",
     author="Anurag Dhadse",

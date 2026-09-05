@@ -9,7 +9,7 @@ version = version.lstrip('v')
 print(f"verion: {version}")
 
 setuptools.setup(
-    name="py_excel_form_extractor",
+    name="champion-excel-form-extractor",
     version=version,
     url="https://github.com/adhadse/excelFormExtractor",
     author="Anurag Dhadse",

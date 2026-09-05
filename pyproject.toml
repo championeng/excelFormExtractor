@@ -1,12 +1,12 @@
 [project]
-name = "py-excel-form-extractor"
+name = "champion-excel-form-extractor"
 dynamic = ["version", "keywords"]
 description = "Extract excel form content into structured data"
 authors = [
     {name = "Anurag Dhadse", email = "hello@adhadse.com"}
 ]
 readme = "README.md"
-requires-python = ">=3.8"
+requires-python = ">=3.14,<3.15"
 license = {text = "MIT"}
 classifiers = [
     "Programming Language :: Python :: 3",
