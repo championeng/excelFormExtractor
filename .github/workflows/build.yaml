@@ -42,6 +42,9 @@ jobs:
           CIBW_ARCHS: "native"
           CIBW_ENVIRONMENT: "PATH=$PATH:/usr/local/go/bin RELEASE_VERSION=${RELEASE_VERSION}"
           CIBW_ENVIRONMENT_PASS_LINUX: "RELEASE_VERSION"
+          CIBW_TEST_COMMAND: >-
+            python -c "from py_excel_form_extractor import extractor, utils;
+            assert extractor.CellRange(); assert extractor.SearchCriteria()"
           CIBW_BEFORE_BUILD: |
             pip install pybindgen
           CIBW_BEFORE_ALL_LINUX: |
@@ -91,6 +94,9 @@ jobs:
           CIBW_ARCHS: "aarch64"
           CIBW_ENVIRONMENT: "PATH=$PATH:/usr/local/go/bin RELEASE_VERSION=${RELEASE_VERSION}"
           CIBW_ENVIRONMENT_PASS_LINUX: "RELEASE_VERSION"
+          CIBW_TEST_COMMAND: >-
+            python -c "from py_excel_form_extractor import extractor, utils;
+            assert extractor.CellRange(); assert extractor.SearchCriteria()"
           CIBW_BEFORE_BUILD: |
             pip install pybindgen
           CIBW_BEFORE_ALL_LINUX: |
@@ -119,7 +125,7 @@ jobs:
 
       - uses: actions/setup-go@v6
         with:
-          go-version: "1.22.9"
+          go-version: "1.25.x"
 
       - name: copy setup.py
         run: cp setup_ci.py setup.py
@@ -135,7 +141,7 @@ jobs:
       - name: Install Go build tools
         run: |
           go install github.com/go-python/gopy@v0.4.10
-          go install golang.org/x/tools/cmd/goimports@v0.16.0
+          go install golang.org/x/tools/cmd/goimports@v0.38.0
 
       - name: Configure macOS SDK
         run: echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> "$GITHUB_ENV"
@@ -147,6 +153,9 @@ jobs:
           CIBW_ARCHS: "arm64"
           CIBW_ENVIRONMENT: "PATH=$PATH:$HOME/go/bin RELEASE_VERSION=${RELEASE_VERSION}"
           CIBW_ENVIRONMENT_PASS_MACOS: "RELEASE_VERSION SDKROOT"
+          CIBW_TEST_COMMAND: >-
+            python -c "from py_excel_form_extractor import extractor, utils;
+            assert extractor.CellRange(); assert extractor.SearchCriteria()"
           CIBW_BEFORE_BUILD: |
             pip install pybindgen
           # CIBW_BUILD_VERBOSITY: 3 # Add verbose output
