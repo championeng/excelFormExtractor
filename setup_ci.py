@@ -4,9 +4,8 @@ import os
 import subprocess
 import sys
 import re
-from distutils.core import Extension
-
 import setuptools
+from setuptools import Extension
 from setuptools.command.build_ext import build_ext
 
 
@@ -87,7 +86,7 @@ with open("LICENSE") as f:
 setuptools.setup(
     name=normalize(PACKAGE_DISTRIBUTION_NAME),
     version=version,
-    url="https://github.com/adhadse/excelFormExtractor",
+    url="https://github.com/championeng/excelFormExtractor",
     author="Anurag Dhadse",
     author_email="hello@adhadse.com",
     description="Extract excel form content into structured data.",
@@ -116,7 +115,6 @@ setuptools.setup(
         )
     ],
     # py_modules = ["py_excel_form_extractor.extractor", "py_excel_form_extractor.utils"],
-    setup_requires=['pybindgen'],
     package_data={"py_excel_form_extractor": [
         "*.so",
         "*_go.py",

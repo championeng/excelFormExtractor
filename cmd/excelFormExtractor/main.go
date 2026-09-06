@@ -6,7 +6,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/adhadse/excelFormExtractor/pkg/extractor"
+	"github.com/championeng/excelFormExtractor/pkg/extractor"
 )
 
 func printSuccessAndExit(response extractor.Response) {
