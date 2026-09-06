@@ -137,13 +137,16 @@ jobs:
           go install github.com/go-python/gopy@v0.4.10
           go install golang.org/x/tools/cmd/goimports@v0.16.0
 
+      - name: Configure macOS SDK
+        run: echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> "$GITHUB_ENV"
+
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.2.1
         env:
           CIBW_BUILD: "cp314-macosx_arm64"
           CIBW_ARCHS: "arm64"
           CIBW_ENVIRONMENT: "PATH=$PATH:$HOME/go/bin RELEASE_VERSION=${RELEASE_VERSION}"
-          CIBW_ENVIRONMENT_PASS_MACOS: "RELEASE_VERSION"
+          CIBW_ENVIRONMENT_PASS_MACOS: "RELEASE_VERSION SDKROOT"
           CIBW_BEFORE_BUILD: |
             pip install pybindgen
           # CIBW_BUILD_VERBOSITY: 3 # Add verbose output
