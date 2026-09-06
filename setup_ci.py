@@ -45,7 +45,6 @@ def _generate_path_with_gopath() -> str:
 class CustomBuildExt(build_ext):
     def build_extension(self, ext: Extension):
         bin_path = _generate_path_with_gopath()
-        dynamic_link = "False" if sys.platform == "darwin" else "True"
         go_env = json.loads(
             subprocess.check_output(["go", "env", "-json"]).decode("utf-8").strip()
         )
@@ -61,7 +60,7 @@ class CustomBuildExt(build_ext):
                 "gopy",
                 "build",
                 "-no-make",
-                f"-dynamic-link={dynamic_link}",
+                "-dynamic-link=True",
                 "-rename=True",
                 "-output",
                 destination,

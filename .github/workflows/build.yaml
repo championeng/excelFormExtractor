@@ -135,12 +135,9 @@ jobs:
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.2.1
         env:
-          # Python 3.14 from the macOS 14 runner produces a 14.0-targeted
-          # extension. Keep cibuildwheel/delocate and the build in agreement.
-          MACOSX_DEPLOYMENT_TARGET: "14.0"
           CIBW_BUILD: "cp314-macosx_arm64"
           CIBW_ARCHS: "arm64"
-          CIBW_ENVIRONMENT: "PATH=$PATH:$HOME/go/bin RELEASE_VERSION=${RELEASE_VERSION} MACOSX_DEPLOYMENT_TARGET=14.0"
+          CIBW_ENVIRONMENT: "PATH=$PATH:$HOME/go/bin RELEASE_VERSION=${RELEASE_VERSION}"
           CIBW_ENVIRONMENT_PASS_MACOS: "RELEASE_VERSION SDKROOT"
           CIBW_TEST_COMMAND: >-
             python -c "from py_excel_form_extractor import extractor, utils;
