@@ -59,15 +59,10 @@ jobs:
 
   build_linux_arm:
     name: Linux 3.14 aarch64
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04-arm
 
     steps:
       - uses: actions/checkout@v4
-
-      - name: Set up QEMU
-        uses: docker/setup-qemu-action@v3
-        with:
-          platforms: all
 
       - uses: actions/setup-python@v6
         with:
