@@ -125,7 +125,8 @@ jobs:
 
       - uses: actions/setup-go@v6
         with:
-          go-version: "1.25.x"
+          # gopy 0.4.10 pins x/tools 0.16.0, which does not compile on Go 1.24+.
+          go-version: "1.23.x"
 
       - name: copy setup.py
         run: cp setup_ci.py setup.py
@@ -141,7 +142,7 @@ jobs:
       - name: Install Go build tools
         run: |
           go install github.com/go-python/gopy@v0.4.10
-          go install golang.org/x/tools/cmd/goimports@v0.38.0
+          go install golang.org/x/tools/cmd/goimports@v0.16.0
 
       - name: Configure macOS SDK
         run: echo "SDKROOT=$(xcrun --sdk macosx --show-sdk-path)" >> "$GITHUB_ENV"
